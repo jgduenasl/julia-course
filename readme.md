@@ -12,3 +12,7 @@ The main source for learning resources in julia can be found in:
 
 the guided-book used for this course is
 1. [Julia Data Science](https://juliadatascience.io/)
+
+# Setting up Julia environment
+
+to set up the Jupyter Notebook extension to julia follow this [guide](https://www.aere.iastate.edu/~pwei/aere504x/julia-mac.html)
