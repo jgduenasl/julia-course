@@ -16,3 +16,5 @@ the guided-book used for this course is
 # Setting up Julia environment
 
 to set up the Jupyter Notebook extension to julia follow this [guide](https://www.aere.iastate.edu/~pwei/aere504x/julia-mac.html)
+
+To install pakages in julia use the package [Pkg](https://docs.julialang.org/en/v1/stdlib/Pkg/)
