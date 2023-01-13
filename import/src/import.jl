@@ -3,6 +3,9 @@
 
 using ArgParse, YAML, CSV, Arrow, DataFrames
 
+# TODO: relative paths may be stored using projects or DrWatson
+# https://juliadynamics.github.io/DrWatson.jl/stable/project/#Activating-a-Project-1
+
 root = dirname(@__FILE__)
 path = "github/julia-course/import/input/SB11_20211.txt"
 inputpath = joinpath(root, "import", "input", "SB11_20211.txt")
@@ -19,23 +22,23 @@ parser = ArgParseSettings()
     "--output"
         help = "file path of imported data"
         arg_type = String
-        default = path
+        default = outpath
         required = true
     "--stats"
         help = "basic stats of the imported file"
         arg_type = String
-        default = path
+        default = statspath
 end
 args = ArgParse.parse_args(ARGS, parser)
 
-data = CSV.read(args.input, delim="¬", DataFrame)
+data = read(args.input, delim="¬", DataFrame)
 # TODO: use clean_names like R's janitor function to standardize colnames
 # see https://github.com/xiaodaigh/DataConvenience.jl or 
 # https://github.com/TheRoniOne/Cleaner.jl
 
-stats = Dict(:n_rows => nrow(data),
-             :n_cols => ncol(data))
+stats = Dict(:nrows => nrow(data),
+             :ncols => ncol(data))
 
-Arrow.write(args.output, data)
+write_parquet(args.output, data)
 YAML.write_file(args.stats, stats)
 #done
